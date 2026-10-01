@@ -9,3 +9,64 @@ answer:
 SELECT COUNT(Student.first_name) as count
 FROM Student
 WHERE Student.first_name = 'Anna'
+
+Задание #75
+Студенты, рожденные в мае
+Выведите фамилию, имя и дату рождения студентов, кто был рожден в мае.
+Поля в результирующей таблице:
+last_name
+first_name
+birthday
+
+answer:
+SELECT Student.last_name, Student.first_name, birthday
+FROM Student
+WHERE EXTRACT(Month from birthday) = 5;
+
+Задание #41
+Начало четвёртого занятия
+Выясните, во сколько по расписанию начинается четвёртое занятие.
+Поля в результирующей таблице:
+start_pair
+
+answer:
+SELECT start_pair
+FROM Timepair
+WHERE Timepair.id = 4
+
+
+Задание #36
+Обучающиеся, живущие на улице Пушкина
+Выведите информацию об обучающихся, живущих на улице Пушкина (ul. Pushkina)?
+Поля в результирующей таблице:
+*
+
+answer:
+SELECT *
+FROM Student
+WHERE address LIKE '%ul. Pushkina%'
+
+Задание #34
+Количество 10-х классов
+Сколько всего 10-ых классов
+Используйте конструкцию "as count" для агрегатной функции подсчета количества классов. Это необходимо для корректной проверки.
+Поля в результирующей таблице:
+count
+
+answer:
+SELECT COUNT(Class.name) as count
+FROM Class
+WHERE Class.name LIKE '%10%'
+
+Задание #39
+Количество обучающихся в 10 B классе
+Сколько обучающихся в 10 B классе ?
+Используйте конструкцию "as count" для агрегатной функции подсчета количества учащихся. Это необходимо для корректной проверки.
+Поля в результирующей таблице:
+count
+
+answer:
+SELECT COUNT(Student_in_class.id) as count
+FROM Class
+INNER JOIN Student_in_class ON Class.id = Student_in_class.class
+WHERE Class.id = 6
